@@ -34,7 +34,6 @@ namespace TestAutomation.Test
         public static void TestSoloCheckbox()
         {
             SeleniumEasyCheckboxesPage page = new SeleniumEasyCheckboxesPage(_driver);
-            //page.SelectAndClickFirstCheckBox();
             page.TestResultFirstCheckboxClicked();
         }
 
