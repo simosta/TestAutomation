@@ -6,6 +6,7 @@ using TestAutomation.Page;
 
 namespace TestAutomation.Test
 {
+    
     public class CheckYourBrowserTest
     {
         [TestCase("chrome", "Chrome")]
@@ -13,8 +14,9 @@ namespace TestAutomation.Test
         public static void TestBrowser(string browser, string result)
         {
             IWebDriver webdriver = CheckYourBrowserPage.SelectBrowser(browser);
-            CheckYourBrowserPage.GoToPage(webdriver);
-            CheckYourBrowserPage.TestResult(result, webdriver);
+            CheckYourBrowserPage page = new CheckYourBrowserPage(webdriver);
+            page.GoToPage(webdriver);
+            page.TestResult(result, webdriver);
         }
     }
 }

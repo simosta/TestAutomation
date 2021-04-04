@@ -55,12 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Browsers.cs" />
-    <Compile Include="CheckboxesOnSeleniumEasy.cs" />
     <Compile Include="Page\BasePage.cs" />
     <Compile Include="Page\CheckYourBrowserPage.cs" />
+    <Compile Include="Page\SeleniumEasyCheckboxesPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\CheckYourBrowserTest.cs" />
+    <Compile Include="Test\SeleniumEasyCheckboxesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

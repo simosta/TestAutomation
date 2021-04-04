@@ -13,7 +13,7 @@ namespace TestAutomation.Page
         public static IWebElement text => Driver.FindElement(By.CssSelector(".simple-major"));
         public CheckYourBrowserPage(IWebDriver webdriver) : base(webdriver) { } //konstruktorius
 
-        public static void TestResult(string result, IWebDriver webdriver)
+        public void TestResult(string result, IWebDriver webdriver)
         {
             WaitForElementToBeDisplayed(text);
             Assert.IsTrue(text.Text.Contains(result), "Browser name is not displayed correctly");
@@ -30,7 +30,7 @@ namespace TestAutomation.Page
                 throw new Exception("Browser is not supported");
             return Driver;
         }
-        public static void GoToPage(IWebDriver webdriver)
+        public void GoToPage(IWebDriver webdriver)
         {
             webdriver.Url = "https://developers.whatismybrowser.com/useragents/parse/?analyse-my-user-agent=yes#parse-useragent";
             webdriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
