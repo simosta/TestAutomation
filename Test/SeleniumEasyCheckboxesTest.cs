@@ -12,40 +12,43 @@ namespace TestAutomation.Test
 {
     public class SeleniumEasyCheckboxesTest
     {
-        private static IWebDriver _driver;
         private static SeleniumEasyCheckboxesPage _page;
 
         [OneTimeSetUp]
         public static void Setup()
         {
-            _driver = new ChromeDriver();
-            _driver.Url = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            _driver.Manage().Window.Maximize();
-            _page = new SeleniumEasyCheckboxesPage(_driver);
+            IWebDriver driver = new ChromeDriver();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Window.Maximize();
+            _page = new SeleniumEasyCheckboxesPage(driver);
         }
         
         [OneTimeTearDown]
         public static void TearDown()
         {
-            _driver.Quit();
+            _page.CloseBrowser();
         }
-        
+        //[Order(1)] jei norėčiau iš eilės leisti testus, nes dabar leidžia pgl abc
         [Test]
         public static void TestSoloCheckbox()
         {
-            _page.TestResultFirstCheckboxClicked();
+            _page.SelectAndClickFirstCheckBox();
+            _page.VerifyIfSuccessMessageVisible();
         }
 
         [Test]
         public static void TestFourBottomCheckboxesSelected()
         {
-            _page.TestIfUncheckAllvisible();
+            _page.SelectBottomFour();
+            _page.VerifyIfUncheckAllVisible();
         }
+
         [Test]
         public static void TestIfUncheckAllWorks()
         {
-            _page.TestIfUnchecksAll();
+            _page.SelectBottomFour();
+            _page.ButtonClick();
+            _page.VerifyIfUnchecksAll();
         }
     }
 }

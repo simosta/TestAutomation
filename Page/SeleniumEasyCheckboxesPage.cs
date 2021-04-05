@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,56 +11,34 @@ namespace TestAutomation.Page
 {
     public class SeleniumEasyCheckboxesPage : BasePage
     {
+        private const string pageAddress = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
         private static IWebElement firstCheckBox => Driver.FindElement(By.Id("isAgeSelected"));
         private static IReadOnlyCollection<IWebElement> multipleCheckBoxList => Driver.FindElements(By.CssSelector(".cb1-element"));
         private static IWebElement text => Driver.FindElement(By.Id("txtAge"));
         private static IWebElement button => Driver.FindElement(By.Id("check1"));
-        
         private static bool all_unchecked = true;
 
 
-        public SeleniumEasyCheckboxesPage(IWebDriver webdriver) : base(webdriver) { }
-
-        
-
-        public void TestResultFirstCheckboxClicked()
+        public SeleniumEasyCheckboxesPage(IWebDriver webdriver) : base(webdriver)
         {
-            SelectAndClickFirstCheckBox();
-            Assert.IsTrue("Success - Check box is checked".Equals(text.Text), "Result is NOK");
-        }
-        
-
-        public void TestIfUncheckAllvisible()
-        {
-            UnselectFirstCheck();
-            SelectBottomFour();
-            Assert.IsTrue("Uncheck All".Equals(button.GetAttribute("value")));
+            Driver.Url = pageAddress;
         }
 
-        public void TestIfUnchecksAll()
+
+        public void SelectAndClickFirstCheckBox()
         {
-            UnselectFirstCheck();
-            SelectBottomFour();
-            ButtonClick();
-            foreach (IWebElement checkbox in multipleCheckBoxList)
-            {
-                if (checkbox.Selected)
-                    all_unchecked = false;
-                Assert.IsTrue(all_unchecked, "Uncheck all did not produce expected results");
-            }
-        }
-        private static void ButtonClick()
-        {
-            button.Click();
-        }
-        private static void UnselectFirstCheck()
-        {
-            if (firstCheckBox.Selected)
+            if (!firstCheckBox.Selected)
                 firstCheckBox.Click();
         }
-        private static void SelectBottomFour()
-        {
 
+        public void VerifyIfSuccessMessageVisible()
+        {
+            Assert.IsTrue("Success - Check box is checked".Equals(text.Text), "Result is NOK");
+        }
+
+        public void SelectBottomFour()
+        {
+            UnselectFirstCheck();
             foreach (IWebElement checkbox in multipleCheckBoxList)
             {
                 if (!checkbox.Selected)
@@ -67,9 +46,29 @@ namespace TestAutomation.Page
             }
         }
 
-        private void SelectAndClickFirstCheckBox()
+        public void VerifyIfUncheckAllVisible()
         {
-            if (!firstCheckBox.Selected)
+            Assert.IsTrue("Uncheck All".Equals(button.GetAttribute("value")));
+        }
+
+        public void ButtonClick()
+        {
+            button.Click();
+        }
+
+        public void VerifyIfUnchecksAll()
+        {
+            foreach (IWebElement checkbox in multipleCheckBoxList)
+            {
+                if (checkbox.Selected)
+                    all_unchecked = false;
+                Assert.IsTrue(all_unchecked, "Uncheck all did not produce expected results");
+            }
+        }
+
+        private static void UnselectFirstCheck()
+        {
+            if (firstCheckBox.Selected)
                 firstCheckBox.Click();
         }
 
