@@ -20,11 +20,7 @@ namespace TestAutomation.Page
 
         public SeleniumEasyCheckboxesPage(IWebDriver webdriver) : base(webdriver) { }
 
-        private void SelectAndClickFirstCheckBox()
-        {
-            if (!firstCheckBox.Selected)
-                firstCheckBox.Click();
-        }
+        
 
         public void TestResultFirstCheckboxClicked()
         {
@@ -69,6 +65,12 @@ namespace TestAutomation.Page
                 if (!checkbox.Selected)
                     checkbox.Click();
             }
+        }
+
+        private void SelectAndClickFirstCheckBox()
+        {
+            if (!firstCheckBox.Selected)
+                firstCheckBox.Click();
         }
 
     }

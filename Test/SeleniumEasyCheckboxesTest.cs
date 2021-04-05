@@ -13,6 +13,7 @@ namespace TestAutomation.Test
     public class SeleniumEasyCheckboxesTest
     {
         private static IWebDriver _driver;
+        private static SeleniumEasyCheckboxesPage _page;
 
         [OneTimeSetUp]
         public static void Setup()
@@ -21,7 +22,7 @@ namespace TestAutomation.Test
             _driver.Url = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _driver.Manage().Window.Maximize();
-            
+            _page = new SeleniumEasyCheckboxesPage(_driver);
         }
         
         [OneTimeTearDown]
@@ -33,21 +34,18 @@ namespace TestAutomation.Test
         [Test]
         public static void TestSoloCheckbox()
         {
-            SeleniumEasyCheckboxesPage page = new SeleniumEasyCheckboxesPage(_driver);
-            page.TestResultFirstCheckboxClicked();
+            _page.TestResultFirstCheckboxClicked();
         }
 
         [Test]
         public static void TestFourBottomCheckboxesSelected()
         {
-            SeleniumEasyCheckboxesPage page = new SeleniumEasyCheckboxesPage(_driver);
-            page.TestIfUncheckAllvisible();
+            _page.TestIfUncheckAllvisible();
         }
         [Test]
         public static void TestIfUncheckAllWorks()
         {
-            SeleniumEasyCheckboxesPage page = new SeleniumEasyCheckboxesPage(_driver);
-            page.TestIfUnchecksAll();
+            _page.TestIfUnchecksAll();
         }
     }
 }
