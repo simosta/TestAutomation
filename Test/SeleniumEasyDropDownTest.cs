@@ -49,7 +49,7 @@ namespace TestAutomation.Test
         }
         
         
-        [TestCase("Pennsylvania", "Texas", "Florida", TestName = "Pennsylvania,Texas,Florida")]
+        [TestCase("Pennsylvania", "Texas", TestName = "Pennsylvania,Texas")]
         [TestCase("Pennsylvania", "Texas", "Florida", "California", TestName = "Pennsylvania,Texas,Florida,California")]
         public static void TestIfGetAllSelectedIsCorrect(params string[] states)//ir čia paskutinę
         {
