@@ -34,7 +34,7 @@ namespace TestAutomation.Test
         [OneTimeTearDown]
         public static void TearDown()
         {
-            //_page.CloseBrowser();
+            _page.CloseBrowser();
         }
         //valid options  California,Florida,New Jersey,New York,Ohio,Texas,Pennsylvania,Washington
 
