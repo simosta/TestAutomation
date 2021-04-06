@@ -48,6 +48,7 @@ namespace TestAutomation.Page
 
         public void VerifyIfUncheckAllVisible()
         {
+            GetWait(7).Until(ExpectedConditions.TextToBePresentInElementValue(button, "Uncheck All"));
             Assert.IsTrue("Uncheck All".Equals(button.GetAttribute("value")));
         }
 
